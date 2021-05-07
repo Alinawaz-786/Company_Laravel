@@ -50,6 +50,6 @@ window.Echo = new Echo({
     cluster : 'ap2',
     encrypted: true,
     forceTLS: true,
-    //authEndpoint: '/admin/auth/broadcasting',
+    authEndpoint: 'http://localhost/company/public/broadcasting/auth',
 
 });

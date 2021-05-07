@@ -19,9 +19,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script>
-        {{--window.Laravel = {!! json_encode([--}}
-            {{--'csrfToken' => csrf_token(),--}}
-            {{--]) !!}--}}
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+            ]) !!}
     </script>
 </head>
 <body>
@@ -105,7 +105,7 @@
                                         <a href="{{ route('user.logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            User Logout 12
+                                            User Logout
                                         </a>
 
                                         <form id="logout-form" action="{{ route('user.logout') }}" method="POST"

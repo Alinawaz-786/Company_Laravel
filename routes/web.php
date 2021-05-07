@@ -15,6 +15,16 @@ use App\Http\Controllers\NotificationController;
 |
 */
 
+
+Route::get('/test', function () {
+    $user = Auth::guard('admin')->user();
+    foreach ($user->unreadNotifications as $noti) {
+        echo $noti->notifiable_id.'<br>';
+    }
+
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });

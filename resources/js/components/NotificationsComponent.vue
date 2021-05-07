@@ -34,7 +34,7 @@ export default {
   methods: {
     markNotificationAsRead() {
       if (this.totalUnreadNotification) {
-        axios.get('/admin/markasread');
+        axios.get('http://localhost/company/public/admin/markasread');
         this.totalUnreadNotification = 0;
       }
     },
@@ -50,16 +50,16 @@ export default {
   },
   mounted() {
     Notification.requestPermission().then(function (result) {
-      console.log(result);
+      // console.log(result);
     });
 
-    console.log('Component mounted.');
-    console.log(this.userid);
+    // console.log('Component mounted.');
+    // console.log(this.userid);
     Echo.private('App.Admin.' + this.userid)
         .notification((notify) => {
-          console.log(notify);
           let newUnreadNotification = {data: {admin: notify.admin, user: notify.user}};
-          this.unreadNotification.push(newUnreadNotification);
+            console.log(newUnreadNotification);
+            this.unreadNotification.push(newUnreadNotification);
           this.totalUnreadNotification++;
           if (!("Notification" in window)) {
             alert("This browser does not support desktop notification");

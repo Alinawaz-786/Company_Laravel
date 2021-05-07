@@ -2007,7 +2007,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     markNotificationAsRead: function markNotificationAsRead() {
       if (this.totalUnreadNotification) {
-        axios.get('/admin/markasread');
+        axios.get('http://localhost/company/public/admin/markasread');
         this.totalUnreadNotification = 0;
       }
     },
@@ -2025,19 +2025,18 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    Notification.requestPermission().then(function (result) {
-      console.log(result);
-    });
-    console.log('Component mounted.');
-    console.log(this.userid);
+    Notification.requestPermission().then(function (result) {// console.log(result);
+    }); // console.log('Component mounted.');
+    // console.log(this.userid);
+
     Echo["private"]('App.Admin.' + this.userid).notification(function (notify) {
-      console.log(notify);
       var newUnreadNotification = {
         data: {
           admin: notify.admin,
           user: notify.user
         }
       };
+      console.log(newUnreadNotification);
 
       _this.unreadNotification.push(newUnreadNotification);
 
@@ -56182,7 +56181,7 @@ var app = new Vue({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -56221,13 +56220,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
+window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: '2f638e34ba72ecc7f494',
   cluster: 'ap2',
   encrypted: true,
-  forceTLS: true //authEndpoint: '/admin/auth/broadcasting',
-
+  forceTLS: true,
+  authEndpoint: 'http://localhost/company/public/broadcasting/auth'
 });
 
 /***/ }),
