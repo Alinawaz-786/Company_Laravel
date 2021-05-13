@@ -18,11 +18,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-            ]) !!}
-    </script>
 </head>
 <body>
 <div id="app">
@@ -45,93 +40,39 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-
                     <!-- Authentication Links -->
-                    {{--             @guest
-                                     <li class="nav-item">
-                                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                     </li>
-                                     @if (Route::has('register'))
-                                         <li class="nav-item">
-                                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                         </li>
-                                     @endif
-                                 @else
-                                     <li class="nav-item dropdown">
-                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                             {{ Auth::user()->name }}
-                                         </a>
-
-                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                             <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                              document.getElementById('logout-form').submit();">
-                                                 {{ __('Logout') }}
-                                             </a>
-
-                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                 @csrf
-                                             </form>
-                                         </div>
-                                     </li>
-                                 @endguest--}}
-
-
-                    {{-- Notifications  --}}
-                    @if(Auth::guard('admin')->check())
-                        @php
-                            $admin = Auth::guard('admin')->user();
-                        @endphp
-                        <notifications :userid="{{ $admin->id }}" :unreads="{{ $admin->unreadNotifications }}"></notifications>
-
-                    @endif
-                    @if (Auth::guard('admin')->guest() && Auth::guard('web')->guest())
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
-                                @if(Auth::guard('admin')->check())
-                                    {{ Auth::guard('admin')->user()->name }}
-                                @else
-                                    {{ Auth::guard('web')->user()->name }}
-                                @endif
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    @if(Auth::guard('web')->check())
-                                        <a href="{{ route('user.logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            User Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST"
-                                              style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    @endif
-
-                                    @if(Auth::guard('admin')->check())
-                                        <a href="{{ route('admin.logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form-admin').submit();">
-                                            Admin Logout
-                                        </a>
-
-                                        <form id="logout-form-admin" action="{{ route('admin.logout') }}" method="POST"
-                                              style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    @endif
-                                </li>
-
-                            </ul>
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                    @endif
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
+                                 style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto;float:left; margin-right: 7px;">
 
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </div>
@@ -143,3 +84,4 @@
 </div>
 </body>
 </html>
+© 2021 GitHub, Inc.

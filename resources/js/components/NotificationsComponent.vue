@@ -40,7 +40,7 @@ export default {
     },
     showUserProfile(notify) {
       // If it's okay let's create a notification
-      var notification = new Notification(notify.user.name + " is signup");
+      var notification = new cl(notify.user.name + " is signup");
       notification.onclick = function (event) {
         event.preventDefault(); // prevent the browser from focusing the Notification's tab
         window.open('http://localhost/company/public/admin/user/profile/' + notify.user.id, '_blank');
