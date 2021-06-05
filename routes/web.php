@@ -16,6 +16,18 @@ use App\Http\Controllers\NotificationController;
 */
 
 
+Route::get('/notify', function () {
+//    class ZondaCommand extends Command
+//    {
+//        public function handle()
+//        {
+            $this->notify('Hello Web Artisan', 'Love beautiful code? We do too!');
+//        }
+//    }
+
+});
+
+
 Route::get('/test', function () {
     $user = Auth::guard('admin')->user();
     foreach ($user->unreadNotifications as $noti) {
@@ -57,6 +69,7 @@ Route::post('/send-notification', [App\Http\Controllers\HomeController::class, '
 
 
 //Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+Route::get('/test', 'testController@test')->name('test');
 //Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 Route::post('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
@@ -83,3 +96,5 @@ Route::prefix('admin')->group(function(){
     Route::get('/user/profile/{user_id}', 'HomeController@profile')->name('admin.user.profile');
 
 });
+
+

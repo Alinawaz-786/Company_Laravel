@@ -2013,7 +2013,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     showUserProfile: function showUserProfile(notify) {
       // If it's okay let's create a notification
-      var notification = new Notification(notify.user.name + " is signup");
+      var notification = new cl(notify.user.name + " is signup");
 
       notification.onclick = function (event) {
         event.preventDefault(); // prevent the browser from focusing the Notification's tab

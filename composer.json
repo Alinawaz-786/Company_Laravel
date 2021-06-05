@@ -11,13 +11,16 @@
         "php": "^7.2.5",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.3",
         "laravel-notification-channels/webpush": "^5.1",
         "laravel/framework": "^7.0",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
-        "pusher/pusher-php-server": "~4.0"
+        "mckenziearts/laravel-notify": "^2.2",
+        "nunomaduro/laravel-desktop-notifier": "^2.5",
+        "pusher/pusher-php-server": "~4.0",
+        "twilio/sdk": "^6.24"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

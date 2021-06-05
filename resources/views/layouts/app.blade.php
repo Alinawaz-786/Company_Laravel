@@ -1,7 +1,30 @@
-<!doctype html>
+@php
+    $countries = ['pakistan','India','iceland','irland'];
+    $encode  = \GuzzleHttp\json_encode($countries);
+    $decode = json_decode($encode);
+$phpArray = array(
+        'a' => "Mon",
+        'b' => "Tue",
+        'c' => "Wed",
+        'd' => "Thu",
+        'e' => "Fri",
+        'f' => "Sat",
+        'g' => "Sun",
+    );
+    $week_name= \GuzzleHttp\json_encode($phpArray);
+$phpArray_inner = config('system');
+
+
+@endphp
+
+
+    <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta name="country" content="{{$encode}}">
+    <meta name="week_name" content="{{$week_name}}">
+    <meta name="phpArray_inner" content="{{\GuzzleHttp\json_encode($phpArray_inner)}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -83,5 +106,36 @@
     </main>
 </div>
 </body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var country = $('meta[name="country"]').attr('content');
+        var week_name = $('meta[name="week_name"]').attr('content');
+        var phpArray_inner = $('meta[name="phpArray_inner"]').attr('content');
+        var country_array = JSON.parse(country);
+        var week_name_array = JSON.parse(week_name);
+        var people = JSON.parse(phpArray_inner);
+        console.log(people['looking_for']['startup_co_founder'],Object.keys(people['looking_for']['startup_co_founder']).length)
+        /*for (var i = 0; i < country_array.length; i++) {
+            console.log(country_array[i]);
+        }
+        $.each(week_name_array, function (i, value) {
+            console.log('index: ' + i + ',value: ' + value);
+        });
+        for (var i = 0; i < week_name_array.length; i++) {
+            console.log(week_name_array + '----' + i);
+        }*/
+        for (var i = 0; i < Object.keys(people['looking_for']['startup_co_founder']).length; i++) {
+            // console.log(people['looking_for']['startup_co_founder'][i] + '----' + i);
+        }
+        $.each(people['looking_for']['startup_co_founder'],function (i, value) {
+            console.log('index: ' + i + ',value: ' + value);
+
+        })
+    });
+</script>
 </html>
 © 2021 GitHub, Inc.
